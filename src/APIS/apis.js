@@ -12,3 +12,21 @@ export const fetchData = async (page) => {
         console.log(error);
     }
 }
+
+export const searchVideo = async (keyword) => {
+    try {
+        let data = await API.get(`/videos/search?q=${keyword}`);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const stopFetchingVideos = async () => {
+    try {
+        let response = await API.post('/youtube/stop');
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
