@@ -50,34 +50,11 @@ function Home() {
 
     return (
         <div className="Home">
-            <Navbar />
 
-            <div className="mb-10 w-screen flex item-center flex-wrap justify-center">
-                <button
-                    onClick={() => {
-                        setVideos([]);
-                        setPage(1);
-                        setRefresh(!refresh);
-                    }}
-                    className="border-2 mt-6 border-grey rounded-2xl w-24 sm:w-32 h-12 sm:h-12 mr-4 sm:mr-8  border-gray-600 border-3"
-                >
-                    Refresh Button
-                </button>
-                <button
-                    onClick={handleSort}
-                    className="border-2 mt-6 border-grey rounded-2xl w-24 sm:w-32 h-12 sm:h-12 mr-4 sm:mr-8  border-gray-600 border-3"
-                >
-                    Sort by Date {sortOrder === 'asc' ? 'Ascending' : 'Descending'}
-                </button>
+            {/* const {setVideos, setPage, setRefresh, refresh, sortOrder, handleSort, stopFetching} = props; */}
 
-                <button
-                    onClick={stopFetching}
-                    className="border-2 mt-6 border-grey rounded-2xl w-24 sm:w-32 h-12 sm:h-12 mr-4 sm:mr-8  border-gray-600 border-3"
-                >
-                    Stop Fetching Videos
-                </button>
+            <Navbar setVideos={setVideos} setPage={setPage} setRefresh={setRefresh} refresh={refresh} sortOrder={sortOrder} handleSort={handleSort} stopFetching={stopFetching} />
 
-            </div>
 
             <div className="mb-10 w-screen flex item-center flex-wrap justify-center">
                 <section className="mt-8 m-4 h-12">
@@ -97,6 +74,24 @@ function Home() {
 
                 <section className="mt-8 m-4 h-12">
                     <input
+                        placeholder="Search Video By Keyword"
+                        className="border-2 border-grey rounded-2xl text-center text-black-800 rounded-md border-gray-600 border-3"
+                        value={searchKeyword}
+                        onChange={(e) => setSearchKeyword(e.target.value)}
+                    />
+                </section>
+                <button
+                    onClick={handleSearch}
+                    className="border-2 mt-6 border-grey rounded-2xl w-24 sm:w-32 h-12 sm:h-12 mr-4 sm:mr-8  border-gray-600 border-3"
+                >
+                    Search Video By Keyword
+                </button>
+
+            </div>
+
+            <div className="mb-10 w-screen flex item-center flex-wrap justify-center">
+                <section className="mt-8 m-4 h-12">
+                    <input
                         placeholder="Add New Key Here"
                         className="border-2 border-grey rounded-2xl text-center text-black-800 rounded-md border-gray-600 border-3"
                     />
@@ -104,11 +99,6 @@ function Home() {
                 <button className="border-2 mt-6 border-grey rounded-2xl w-24 sm:w-32 h-12 sm:h-12 mr-4 sm:mr-8  border-gray-600 border-3">
                     Add New Key
                 </button>
-
-            </div>
-
-            <div className="mb-10 w-screen flex item-center flex-wrap justify-center">
-
             </div>
 
             <div className="w-[100vw] flex flex-wrap justify-center item-center h-auto">
